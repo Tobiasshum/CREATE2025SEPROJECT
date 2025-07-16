@@ -1,0 +1,72 @@
+h1{
+    font-family: "Sofia"; 
+    color: #8a581c;
+    font-size: 50px; 
+}
+
+h2{
+    font-family: "Literata";
+    color: #402e18;
+    margin-left: 4rem;
+}
+
+p{
+    font-family: "Winky Rough";
+    color: #402e18;
+}
+
+img{
+    height: 150px;
+    border-radius: 10%;
+}
+
+body{
+    background-color: #fec190;
+    padding: 1rem 6rem;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background-color: rgb(46, 37, 28);
+    margin-top: 3rem;
+}
+
+a:link{
+    color: #4a213a;
+}
+a:visited{
+    color: #4a213a;
+}
+a:hover{
+    color: #8a581c;
+}
+a:active{
+    color: #402e18;
+}
+
+.fancy-font{
+    font-family:"Winky Rough";
+}
+
+li{
+    margin-bottom: 3px;
+}
+
+ol {
+    float:left;
+    margin-left: 4rem;
+}
+
+.wrap-text {
+    float: left;
+    margin-right: 20px;
+}
+
+.pad {
+    padding-bottom: 110px;
+}
+
+html{
+    scroll-behavior: smooth;
+}
