@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Friendly</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Enter Your Names</h1>
+    <form action="/submit-names" method="POST">
+        <label for="name1">Name 1:</label>
+        <input type="text" id="name1" name="name1" required>
+        <br>
+        <label for="name2">Name 2:</label>
+        <input type="text" id="name2" name="name2" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

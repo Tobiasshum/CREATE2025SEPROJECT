@@ -1,0 +1,24 @@
+title {
+    margin-left: 35rem;
+}
+
+h1{ 
+    font-family: "Sofia"; 
+    color: #8a581c;
+    font-size: 100px; 
+    text-align: center;
+}
+
+
+form {
+    margin-left: 42rem;
+    font-family: "Literata";
+    color: #402e18;
+    font-size: 50px;
+}
+
+form label{
+    font-family: "Literata";
+    color: #402e18;
+    font-size: 50px;
+}
