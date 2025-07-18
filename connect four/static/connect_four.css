@@ -1,0 +1,54 @@
+h1 {
+    font-family: "Sofia";
+    font-size: 50px;
+    margin: 50px auto;
+    width:fit-content;
+
+    color: #0b2b34;
+}
+.game_board{
+    display: grid;
+    grid-template-columns: repeat(7,70px);
+    grid-template-rows: repeat(6, 70px);
+    gap: 5px;
+    margin: 25px auto; /*change this so that the heading has more space*/
+    width: fit-content;
+   
+}
+
+.cell{
+    width: 50px;
+    height: 50px;
+    background-color: #a9d1dc;
+    border-radius: 50%;
+    margin:10px;
+}
+
+button {
+    width:50px;
+    height:50px;
+    background-color: pink;
+    color: black;
+    border:none;
+    margin: 12.5px;
+    border-radius:50%;
+}
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;}
+
+
+.red{
+    width:50px;
+    height:50px;
+    background-color: #590e0e;
+    border-radius:50%;
+}
+.yellow{
+    width:50px;
+    height:50px;
+    background-color: #ddaa29;
+    border-radius:50%;
+}
+

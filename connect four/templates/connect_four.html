@@ -1,0 +1,42 @@
+<!--
+This is a template for an HTML file for developing your web apps. 
+Feel free to fork and clone this to modify as needed, or if you prefer, start from scratch on a new file.
+
+Please ensure that each HTML file you create is located in a directory named templates of your project.
+-->
+
+<!DOCTYPE html> 
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href = "{{ url_for('static', filename='connect_four.css') }}" /> <!-- add the href attribute linking to your stylesheet -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        <!-- for fonts, visit: https://fonts.google.com/ -->
+        
+        <title> Game Friendly</title>
+
+    </head>
+
+
+    <body>
+        <h1> Connect Four </h1>
+
+        <form method="POST">
+            {% for col in range(7) %}
+                <button type="submit" name="column" value="{{col}}">↓</button>
+            {% endfor %}
+        </form>
+
+        <div class="game_board">
+            {% for row in game_board %}
+                {% for cell in row %}
+                    <div class="cell{% if cell==1 %} red{% elif cell==2 %} yellow{% endif %}"></div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        <!-- write the code for the elements of your page here -->
+    </body>
+
+</html>
