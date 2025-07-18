@@ -1,32 +1,33 @@
-let deck, playerHand, dealerHand;
-const suits = ['♠', '♥', '♣', '♦'];
-const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-
-const playerDiv = document.getElementById('player-hand');
-const dealerDiv = document.getElementById('dealer-hand');
-const resultDiv = document.getElementById('result');
-
-document.getElementById('hit').onclick = playerHit;
-document.getElementById('stand').onclick = dealerTurn;
-
-startGame();
+let deck = [];
+let player1Hand = [];
+let player2Hand = [];
+let dealerHand = [];
 
 function startGame() {
   deck = createDeck();
   shuffle(deck);
-  playerHand = [deck.pop(), deck.pop()];
+
+  player1Hand = [deck.pop(), deck.pop()];
+  player2Hand = [deck.pop(), deck.pop()];
   dealerHand = [deck.pop(), deck.pop()];
+
+  document.getElementById("player1-controls").style.display = "block";
+  document.getElementById("player2-controls").style.display = "none";
+  document.getElementById("results").innerText = "";
+
   renderHands();
 }
 
 function createDeck() {
-  let deck = [];
+  const suits = ['♠', '♥', '♣', '♦'];
+  const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  let newDeck = [];
   for (let suit of suits) {
     for (let value of values) {
-      deck.push({ value, suit });
+      newDeck.push({ suit, value });
     }
   }
-  return deck;
+  return newDeck;
 }
 
 function shuffle(deck) {
@@ -37,16 +38,22 @@ function shuffle(deck) {
 }
 
 function renderHands(revealDealer = false) {
-  playerDiv.innerHTML = handToString(playerHand) + ` (${calculateScore(playerHand)})`;
+  document.getElementById("player1-hand").innerText =
+    handToString(player1Hand) + ` (${calculateScore(player1Hand)})`;
+  document.getElementById("player2-hand").innerText =
+    handToString(player2Hand) + ` (${calculateScore(player2Hand)})`;
+
   if (revealDealer) {
-    dealerDiv.innerHTML = handToString(dealerHand) + ` (${calculateScore(dealerHand)})`;
+    document.getElementById("dealer-hand").innerText =
+      handToString(dealerHand) + ` (${calculateScore(dealerHand)})`;
   } else {
-    dealerDiv.innerHTML = `${dealerHand[0].value}${dealerHand[0].suit} [?]`;
+    document.getElementById("dealer-hand").innerText =
+      `${dealerHand[0].value}${dealerHand[0].suit} [?]`;
   }
 }
 
 function handToString(hand) {
-  return hand.map(card => `${card.value}${card.suit}`).join(' ');
+  return hand.map(card => `${card.value}${card.suit}`).join(" ");
 }
 
 function calculateScore(hand) {
@@ -57,7 +64,7 @@ function calculateScore(hand) {
       score += 10;
     } else if (card.value === 'A') {
       score += 11;
-      aces += 1;
+      aces++;
     } else {
       score += parseInt(card.value);
     }
@@ -69,34 +76,55 @@ function calculateScore(hand) {
   return score;
 }
 
-function playerHit() {
-  playerHand.push(deck.pop());
+function player1Hit() {
+  player1Hand.push(deck.pop());
   renderHands();
-  let score = calculateScore(playerHand);
-  if (score > 21) {
-    endGame("You bust! Dealer wins.");
+  if (calculateScore(player1Hand) > 21) {
+    document.getElementById("player1-controls").style.display = "none";
+    document.getElementById("player2-controls").style.display = "block";
+  }
+}
+
+function endPlayer1Turn() {
+  document.getElementById("player1-controls").style.display = "none";
+  document.getElementById("player2-controls").style.display = "block";
+}
+
+function player2Hit() {
+  player2Hand.push(deck.pop());
+  renderHands();
+  if (calculateScore(player2Hand) > 21) {
+    dealerTurn();
   }
 }
 
 function dealerTurn() {
+  document.getElementById("player2-controls").style.display = "none";
   while (calculateScore(dealerHand) < 17) {
     dealerHand.push(deck.pop());
   }
   renderHands(true);
-  let playerScore = calculateScore(playerHand);
-  let dealerScore = calculateScore(dealerHand);
+  evaluateGame();
+}
 
-  if (dealerScore > 21 || playerScore > dealerScore) {
-    endGame("You win!");
-  } else if (dealerScore > playerScore) {
-    endGame("Dealer wins.");
-  } else {
-    endGame("It's a tie.");
+function evaluateGame() {
+  const player1Score = calculateScore(player1Hand);
+  const player2Score = calculateScore(player2Hand);
+  const dealerScore = calculateScore(dealerHand);
+
+  let resultText = '';
+
+  function outcome(playerScore) {
+    if (playerScore > 21) return "Bust!";
+    if (dealerScore > 21 || playerScore > dealerScore) return "Win!";
+    if (playerScore === dealerScore) return "Tie!";
+    return "Lose.";
   }
+
+  resultText += `Player 1: ${outcome(player1Score)}<br>`;
+  resultText += `Player 2: ${outcome(player2Score)}`;
+
+  document.getElementById("results").innerHTML = resultText;
 }
 
-function endGame(message) {
-  resultDiv.innerText = message;
-  document.getElementById('hit').disabled = true;
-  document.getElementById('stand').disabled = true;
-}
+startGame();

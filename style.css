@@ -1,0 +1,57 @@
+body {
+  font-family: Arial;
+  background: #145a32; /* dark green */
+  color: white;
+  text-align: center;
+  padding: 10px;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.game {
+  margin-top: 10px; /* reduced margin */
+}
+
+#player-hand, #dealer-hand {
+  margin: 5px; /* reduced margin */
+  font-size: 1rem; /* smaller font */
+}
+
+button {
+  padding: 5px 10px; /* smaller buttons */
+  margin: 5px;
+  font-size: 0.9rem;
+}
+
+/* Card images styling */
+.card-img {
+  width: 40px;
+  height: auto;
+  margin-right: 2px;
+  vertical-align: middle;
+  transition: transform 0.2s; /* smooth scaling */
+}
+
+.card-img:hover {
+  transform: scale(1.2); /* zoom effect on hover */
+}
+
+h1, h2, #results {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#dealer-hand,
+#player1-hand,
+#player2-hand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  font-size: 1rem;
+}

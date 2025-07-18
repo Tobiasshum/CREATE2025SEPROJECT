@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2-Player Blackjack</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>2-Player Blackjack</h1>
+
+  <div>
+    <h2>Dealer's Hand:</h2>
+    <div id="dealer-hand"></div>
+  </div>
+
+  <div>
+    <h2>Player 1's Hand:</h2>
+    <div id="player1-hand"></div>
+    <div id="player1-controls">
+      <button onclick="player1Hit()">Hit P1</button>
+      <button onclick="endPlayer1Turn()">Stand P1</button>
+    </div>
+  </div>
+
+  <div>
+    <h2>Player 2's Hand:</h2>
+    <div id="player2-hand"></div>
+    <div id="player2-controls" style="display: none;">
+      <button onclick="player2Hit()">Hit P2</button>
+      <button onclick="dealerTurn()">Stand P2</button>
+    </div>
+  </div>
+
+  <h2 id="results"></h2>
+  <button onclick="startGame()">New Game</button>
+  <script src="script.js"></script>
+</body>
+</html>
